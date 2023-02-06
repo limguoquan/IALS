@@ -28,6 +28,8 @@ parser.add_argument('--attr1', type=str, default='young', help='[smiling | male 
 parser.add_argument('--attr2', type=str, default='eyeglasses', help='[smiling | male | young | pose | eyeglasses]')
 parser.add_argument('--real_image', type=int, choices=[0,1], default=0, help='edit real image or not, if true, you should specify the latent_code_path')
 parser.add_argument('--latent_code_path', type=str, help='latent code path for real image')
+parser.add_argument('--ials_latent_code_path', type=str, help='latent code path after ials')
+
 
 opt, _ = parser.parse_known_args()
 
@@ -94,6 +96,9 @@ with torch.no_grad():
     for i, y in enumerate(x):
         if i == 0:
             continue
+        if i == len(x)-1:
+            np.save(opt.ials_latent_code_path, y.unsqueeze(0).cpu().detach().numpy())
+
         origin_img = g_style(y.unsqueeze(0))
         img = (origin_img + 1) / 2
         img = F.avg_pool2d(img, 4, 4)
