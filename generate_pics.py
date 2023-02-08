@@ -105,12 +105,12 @@ for img_number in range(opt.num_of_pics):
             img_list.append(img)
         img_list = torch.cat(img_list, dim=0)
 
-    if not(os.path.isdir(f'./images/control/generated/set_{img_number}')):
-        os.mkdir(f'./images/control/generated/set_{img_number}')
-    save_image(img_list[0], f"./images/control/generated/set_{img_number}/unedited.jpg")
-    np.save(f"./images/control/generated/set_{img_number}/unedited.npy", y.unsqueeze(0).cpu().detach().numpy())
-    save_image(img_list[-1], f"./images/control/generated/set_{img_number}/edited.jpg")
-    np.save(f"./images/control/generated/set_{img_number}/edited.npy", y.unsqueeze(0).cpu().detach().numpy())
-    save_image(img_list, f"./images/control/generated/set_{img_number}/complete_transformation.jpg", nrow=5)
+    if not(os.path.isdir(f'./images/generated/set_{img_number}')):
+        os.mkdir(f'./images/generated/set_{img_number}')
+    save_image(img_list[0], f"./images/generated/set_{img_number}/unedited.jpg")
+    np.save(f"./images/generated/set_{img_number}/unedited.npy", y.unsqueeze(0).cpu().detach().numpy())
+    save_image(img_list[-1], f"./images/generated/set_{img_number}/ials_edited.jpg")
+    np.save(f"./images/generated/set_{img_number}/ials_edited.npy", y.unsqueeze(0).cpu().detach().numpy())
+    save_image(img_list, f"./images/generated/set_{img_number}/ials_complete_transformation.jpg", nrow=5)
 
 
