@@ -118,7 +118,7 @@ for latent_code in latent_codes:
         # save ials edited image
         save_image(img_list[-1], f"{opt.img_ials_output_dir}/{latent_code[:-4]}.png")
         # save complete transformation
-        save_image(img_list, f"{opt.strip_img_ials_output_dir}/{latent_code[:-4]}.png", nrow=5)
+        # save_image(img_list, f"{opt.strip_img_ials_output_dir}/{latent_code[:-4]}.png", nrow=5)
         # save ials latent code
         np.save(f"{opt.latent_code_ials_output_dir}/{latent_code[:-4]}.npy", y.unsqueeze(0).cpu().detach().numpy())
 
