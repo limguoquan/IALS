@@ -20,10 +20,8 @@ parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFo
 
 parser.add_argument('--json_path', type=str, default='/home/FYP/limg0038/json/')
 parser.add_argument('--image_path', type=str, default='/home/FYP/limg0038/faces_dataset_small')
-parser.add_argument('--latent_code_inv_output_dir', type=str, default='/home/FYP/limg0038/ials/invertedImages/latent_code_inv')
-parser.add_argument('--img_inv_output_dir', type=str, default='/home/FYP/limg0038/ials/invertedImages/img_inv')
-
-
+# parser.add_argument('--latent_code_inv_output_dir', type=str, default='/home/FYP/limg0038/ials/invertedImages/latent_code_inv')
+parser.add_argument('--img_output_dir', type=str, default='/home/FYP/limg0038/ials/invertedImages/img_original')
 
 parser.add_argument('--pretrain_root', type=str, default=r'./pretrain', help='path to the pretrain dir')
 parser.add_argument('--truncation', type=float, default=0.5, help='truncation trick in stylegan')
@@ -58,4 +56,4 @@ for image_name in image_names:
 
 for image_name in image_list:
     img = Image.open(opt.image_path + '/' + image_name)
-    img = img.save(f"/home/FYP/limg0038/ials/invertedImages/img_original/{image_name[:-4]}.png")
+    img = img.save(opt.img_output_dir + '/' + f'{image_name[:-4]}.png')
