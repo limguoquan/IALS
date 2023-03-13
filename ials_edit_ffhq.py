@@ -30,11 +30,15 @@ parser.add_argument('--real_image', type=int, choices=[0,1], default=0, help='ed
 # parser.add_argument('--latent_code_path', type=str, help='latent code path for real image')
 # parser.add_argument('--ials_latent_code_path', type=str, help='latent code path after ials')
 
-parser.add_argument('--latent_code_path', type=str, default='/home/FYP/limg0038/ials/invertedImages/latent_code_inv')
-# parser.add_argument('--latent_code_path', type=str, default='/home/FYP/limg0038/ials/invertedImages/test')
-parser.add_argument('--img_ials_output_dir', type=str, default='/home/FYP/limg0038/ials/invertedImages/img_ials')
-parser.add_argument('--strip_img_ials_output_dir', type=str, default='/home/FYP/limg0038/ials/invertedImages/strip_img_ials')
-parser.add_argument('--latent_code_ials_output_dir', type=str, default='/home/FYP/limg0038/ials/invertedImages/latent_code_ials')
+# parser.add_argument('--latent_code_path', type=str, default='/home/FYP/limg0038/ials/invertedImages/latent_code_inv')
+# parser.add_argument('--img_ials_output_dir', type=str, default='/home/FYP/limg0038/ials/invertedImages/img_ials')
+# parser.add_argument('--strip_img_ials_output_dir', type=str, default='/home/FYP/limg0038/ials/invertedImages/strip_img_ials')
+# parser.add_argument('--latent_code_ials_output_dir', type=str, default='/home/FYP/limg0038/ials/invertedImages/latent_code_ials')
+
+parser.add_argument('--latent_code_path', type=str, default='/home/FYP/limg0038/ials/invertedImages/latent_code_adv')
+parser.add_argument('--img_ials_output_dir', type=str, default='/scratch-shared/LIMG0038/images/adv_then_ials/final_image')
+parser.add_argument('--strip_img_ials_output_dir', type=str, default='/scratch-shared/LIMG0038/images/adv_then_ials/final_image_strip')
+parser.add_argument('--latent_code_ials_output_dir', type=str, default='/scratch-shared/LIMG0038/images/adv_then_ials/final_latent_code')
 
 opt, _ = parser.parse_known_args()
 
@@ -118,7 +122,7 @@ for latent_code in latent_codes:
         # save ials edited image
         save_image(img_list[-1], f"{opt.img_ials_output_dir}/{latent_code[:-4]}.png")
         # save complete transformation
-        # save_image(img_list, f"{opt.strip_img_ials_output_dir}/{latent_code[:-4]}.png", nrow=5)
+        save_image(img_list, f"{opt.strip_img_ials_output_dir}/{latent_code[:-4]}.png", nrow=5)
         # save ials latent code
         np.save(f"{opt.latent_code_ials_output_dir}/{latent_code[:-4]}.npy", y.unsqueeze(0).cpu().detach().numpy())
 
